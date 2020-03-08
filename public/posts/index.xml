@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Warsztaty</title>
+    <link>http://warsztaty.motobelfer.org/posts/</link>
+    <description>Recent content in Posts on Warsztaty</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pl-PL</language>
+    <lastBuildDate>Sun, 08 Mar 2020 20:00:00 +0100</lastBuildDate>
+    
+	<atom:link href="http://warsztaty.motobelfer.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Wprowadzenie</title>
+      <link>http://warsztaty.motobelfer.org/posts/wprowadzenie/</link>
+      <pubDate>Sun, 08 Mar 2020 20:00:00 +0100</pubDate>
+      
+      <guid>http://warsztaty.motobelfer.org/posts/wprowadzenie/</guid>
+      <description>Cel kursu Celem jest zapoznanie uczestnikow z podstawowymi uslugami dostepnymi w chmurze AWS.
+Uczestnicy poznaja kilka serwisow z nastepujacych obszarow:
+ Storage  S3   Networking &amp;amp; Content Delivery  Route 53 CloudFront   Developer Tools  CodePipeline CodeDeploy   Security, Identity, &amp;amp; Compliance  Certificate Manager   Application Integration  AWS Budgets AWS Cost Explorer    Architektura W ramach zajec przygotuja samodzielnie statyczna strone www oraz system do automatycznej aktualizacji kodu z repozytorium Git znajdujacego sie w serwisie GitHub.</description>
+    </item>
+    
+    <item>
+      <title>S3</title>
+      <link>http://warsztaty.motobelfer.org/posts/s3/</link>
+      <pubDate>Sat, 07 Mar 2020 23:00:00 +0100</pubDate>
+      
+      <guid>http://warsztaty.motobelfer.org/posts/s3/</guid>
+      <description>Amazon Simple Storage Service (Amazon S3) Internetowy nośnik danych, który umożliwia dostęp do przechowywanych danych i zarządzanie nimi. Ilość przechowywanych danych jest praktycznie nielimitowana.
+Glowne funkcje:
+ Kopie zapasowe Archwizacja danych Jezioro danych (data lake) Hosting statycznych stron www  Kazdy S3 bucket ma swoj region.
+W odroznieniu od innych regionalnych serwisow, gdzie widzimy tylko resource&amp;rsquo;y w danym regionie, tutaj mamy jeden widok z wszystkimi bucketami utworzonymi na danym koncie AWS, a region jest atrybutem.</description>
+    </item>
+    
+    <item>
+      <title>Route53</title>
+      <link>http://warsztaty.motobelfer.org/posts/route53/</link>
+      <pubDate>Fri, 06 Mar 2020 20:00:00 +0000</pubDate>
+      
+      <guid>http://warsztaty.motobelfer.org/posts/route53/</guid>
+      <description>Route53 to serwis DNS w ktorym mozemy kupowac domeny i zarzadzac nimi.
+Utworzenie recordu IN A w domenie motobelfer.org  Hosted zones  motobelfer.org -&amp;gt; Create Record Set w prawym menu podajemy nazwe (taka sama jak nazwa S3 bucketu ktory wczesniej stworzylismy) Type: A - IPv4 address Alias: Yes Alias Target: wybierzcie swoj bucket z listy S3 website endpoints Create     Alias do rekordu IN A jest specjalnym typem recordu w Route53.</description>
+    </item>
+    
+    <item>
+      <title>AWS Certificate Manager</title>
+      <link>http://warsztaty.motobelfer.org/posts/acm/</link>
+      <pubDate>Thu, 05 Mar 2020 20:00:00 +0000</pubDate>
+      
+      <guid>http://warsztaty.motobelfer.org/posts/acm/</guid>
+      <description>Utworzenie certyfikatu SSL w AWS Certificate Manager Serwis - AWS Certificate Manager
+ wybierzcie region - N. Virginia (prawy górny róg)  jest to bardzo wazne gdyz usługa CloudFront nie jest zregionalizowana i nie mozemy w tym przypadku użyć regionu Frankfurt   Request a certificate  nalezy wybrac Request a public certificate -&amp;gt; Request a certificate w Domain name nalezy podac pełna nazwe swojej domeny dla ktorej tworzycie certyfikat np.</description>
+    </item>
+    
+    <item>
+      <title>Cloudfront</title>
+      <link>http://warsztaty.motobelfer.org/posts/cloudfront/</link>
+      <pubDate>Wed, 04 Mar 2020 22:00:00 +0100</pubDate>
+      
+      <guid>http://warsztaty.motobelfer.org/posts/cloudfront/</guid>
+      <description>Co to jest CloudFront? CloudFront to CDN Content Delivery Network – jest to usługa polegająca na instalowaniu fragmentów strony internetowej na wielu serwerach na całym świecie (sieć odwrotnych serwerów pośredniczących tzw. Reverse Proxy). W efekcie, strona działa zawsze szybciej, dysponujemy dużo większą przepustowością łączy ale co najważniejsze, lokalizacja serwera (czyli to gdzie jest przechowywana strona internetowa) przestaje mieć jakiekolwiek przełożenie na dodatkowe opóźnienia wynikające z odległości jaką musi pokonać połączenie internetowe.</description>
+    </item>
+    
+    <item>
+      <title>Codepipeline</title>
+      <link>http://warsztaty.motobelfer.org/posts/codepipeline/</link>
+      <pubDate>Tue, 03 Mar 2020 20:00:00 +0000</pubDate>
+      
+      <guid>http://warsztaty.motobelfer.org/posts/codepipeline/</guid>
+      <description>Utworzenie pipeline&amp;rsquo;a do automatycznego deploymentu kodu z GitHuba&amp;rsquo;a do AWS S3 Create pipeline
+Step 1  Pipeline name - nalezy podac swoja nazwe Service role  Existing service role wybieramy juz istniejaca IAM Role o nazwie WarsztatyRole  Advance settings  Artifact store -&amp;gt; Default location Encryption key -&amp;gt; Default AWS Managed Key        Step 2  Source  wybieramy co ma byc zrodlem dla naszego pipeline - do wyboru sa serwisy AWS CodeCommit (repozytorium GIT), Amazon ECR (Elastic Container Registry), Amazon S3, oraz zewnetrze takie jak GutHub, Bitbucket Cloud.</description>
+    </item>
+    
+    <item>
+      <title>AWS Cost Explorer i Budgets</title>
+      <link>http://warsztaty.motobelfer.org/posts/cost-management/</link>
+      <pubDate>Mon, 02 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://warsztaty.motobelfer.org/posts/cost-management/</guid>
+      <description>Zarzadzanie budgetem i monitorowanie kosztow Amazon Web Services reklamuje swoje uslugi jako placicz tylko za tyle ile zuzyjesz, zadnych oplat wstepnych W zwiazku z tym kazda osoba ktora uzywa i tworzy zasoby (resource&amp;rsquo;y) w AWS musi byc swiadoma ile one kosztuja. Dotyczy to:
+ Deweloperow  aby usuwali lub wylaczali uslugi z ktorych aktualnie nie korzystaja   DevOps&amp;rsquo;ow  aby tworzyli infrastrukture w oparciu o Best Practises i Well Architected Framework projektujac systemy dla deweloperow mysleli nie tylko o wymaganiach technicznych ale tez o tym ile takie rozwiazanie bedzie kosztowac   SRE&amp;rsquo;s (Site Relability Engineers)  aby tworzac systemy monitorowania pamietali o kosztach, np.</description>
+    </item>
+    
+    <item>
+      <title>Messaging</title>
+      <link>http://warsztaty.motobelfer.org/posts/messaging/</link>
+      <pubDate>Sun, 01 Mar 2020 23:20:20 +0100</pubDate>
+      
+      <guid>http://warsztaty.motobelfer.org/posts/messaging/</guid>
+      <description>SES - Simple Email Service  Różne protokoły (SMTP , REST API, AWS CLI, AWS SDK) Wsparcie dla nagłówków email Załaczniki, HTML, templates Możliwość wysyłania i odbierania maili na dużą skalę Symulator Cena Służy do komunikacji z ludźmi (email)  SNS - Simple Notification Service  Integracja z większością serwisów AWS Typ - jeden nadawca -&amp;gt; wielu odbiorców Limit na długość wiadomości to 8192 znaki UTF-8 Brak możliwości przesyłania załączników, HTML Wymagane potwierdzenie odbiorcy przy subskrypcji Służy do natychmiastowej komunikacji pomiędzy aplikacjami lub serwisami AWS  SQS - Simple Queue Service  Najstarsza usługa AWS Możliwość wyboru standardowej kolejki lub FIFO (First-In-First-Out) Możliwość przechowywania wiadomości do 14 dni Brak ograniczeń w ilość wiadomości w kolejce Standardowo maksymalna wielkość wiadomości to 256KB Służy do buforowania wiadomość - wielu nadawców -&amp;gt; jeden odbiorca  </description>
+    </item>
+    
+  </channel>
+</rss>

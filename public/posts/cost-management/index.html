@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html><head>
+<title>AWS Cost Explorer i Budgets</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="http://warsztaty.motobelfer.org/scss/journal.min.f9aa2ef90b19ac8d29363dbd51d4350621537cb3340dd7c6bacf18e3c426f4d5.css" integrity="sha256-&#43;aou&#43;QsZrI0pNj29UdQ1BiFTfLM0DdfGus8Y48Qm9NU=" media="screen">
+
+<script src="http://warsztaty.motobelfer.org//js/loadCSS.js"></script>
+<script src="http://warsztaty.motobelfer.org//js/table.js"></script>
+
+
+<script src="http://warsztaty.motobelfer.org//js/toc.js"></script>
+
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://warsztaty.motobelfer.org/">
+    
+        <div class="nav-title">
+            Warsztaty
+        </div>
+        
+        <div class="nav-subtitle">
+            DevOps w chmurze na przykładzie budowania statycznej strony www
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        Author: <a href="https://www.linkedin.com/in/maciejmalek/">Maciej Malek</a>
+<br>
+Home Page: <a href="http://maciejmalek.com" target="_blank" rel="noreferrer noopener">maciejmalek.com</a> <br>
+<br>
+&copy;
+	
+	2020 Warsztaty
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#zarzadzanie-budgetem-i-monitorowanie-kosztow" v-on:click="closeDrawer" id="zarzadzanie-budgetem-i-monitorowanie-kosztow-nav">
+										 Zarzadzanie budgetem i monitorowanie kosztow
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#aws-budgets" v-on:click="closeDrawer" id="aws-budgets-nav">
+										 AWS Budgets
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#aws-cost-explorer" v-on:click="closeDrawer" id="aws-cost-explorer-nav">
+										 AWS Cost Explorer
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#reserved-instances-i-savings-plans" v-on:click="closeDrawer" id="reserved-instances-i-savings-plans-nav">
+										 Reserved Instances i Savings Plans
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#uslugi-ktore-sa-za-darmo-przez-caly-czas" v-on:click="closeDrawer" id="uslugi-ktore-sa-za-darmo-przez-caly-czas-nav">
+										 Uslugi, ktore sa za darmo przez caly czas
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#amazon-dynamodb" v-on:click="closeDrawer" id="amazon-dynamodb-nav">
+										 Amazon DynamoDB
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#aws-lambda" v-on:click="closeDrawer" id="aws-lambda-nav">
+										 AWS Lambda
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#amazon-sns" v-on:click="closeDrawer" id="amazon-sns-nav">
+										 Amazon SNS
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#amazon-cloudwatch" v-on:click="closeDrawer" id="amazon-cloudwatch-nav">
+										 Amazon CloudWatch
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#wiecej-na-stronie-aws-free-tierhttpsawsamazoncomfreeall-free-tiersort-byitemadditionalfieldssortrankall-free-tiersort-orderascawsffree20tier20typestier23always-freeawsmpage-all-free-tier1" v-on:click="closeDrawer" id="wiecej-na-stronie-aws-free-tierhttpsawsamazoncomfreeall-free-tiersort-byitemadditionalfieldssortrankall-free-tiersort-orderascawsffree20tier20typestier23always-freeawsmpage-all-free-tier1-nav">
+										 Wiecej na stronie AWS Free Tier
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#zarzadzanie-budgetem-i-monitorowanie-kosztow" v-on:click="closeDrawer" id="zarzadzanie-budgetem-i-monitorowanie-kosztow-nav">
+										 Zarzadzanie budgetem i monitorowanie kosztow
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#aws-budgets" v-on:click="closeDrawer" id="aws-budgets-nav">
+										 AWS Budgets
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#aws-cost-explorer" v-on:click="closeDrawer" id="aws-cost-explorer-nav">
+										 AWS Cost Explorer
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#reserved-instances-i-savings-plans" v-on:click="closeDrawer" id="reserved-instances-i-savings-plans-nav">
+										 Reserved Instances i Savings Plans
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#uslugi-ktore-sa-za-darmo-przez-caly-czas" v-on:click="closeDrawer" id="uslugi-ktore-sa-za-darmo-przez-caly-czas-nav">
+										 Uslugi, ktore sa za darmo przez caly czas
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#amazon-dynamodb" v-on:click="closeDrawer" id="amazon-dynamodb-nav">
+										 Amazon DynamoDB
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#aws-lambda" v-on:click="closeDrawer" id="aws-lambda-nav">
+										 AWS Lambda
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#amazon-sns" v-on:click="closeDrawer" id="amazon-sns-nav">
+										 Amazon SNS
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#amazon-cloudwatch" v-on:click="closeDrawer" id="amazon-cloudwatch-nav">
+										 Amazon CloudWatch
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#wiecej-na-stronie-aws-free-tierhttpsawsamazoncomfreeall-free-tiersort-byitemadditionalfieldssortrankall-free-tiersort-orderascawsffree20tier20typestier23always-freeawsmpage-all-free-tier1" v-on:click="closeDrawer" id="wiecej-na-stronie-aws-free-tierhttpsawsamazoncomfreeall-free-tiersort-byitemadditionalfieldssortrankall-free-tiersort-orderascawsffree20tier20typestier23always-freeawsmpage-all-free-tier1-nav">
+										 Wiecej na stronie AWS Free Tier
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="http://warsztaty.motobelfer.org/">
+            Warsztaty
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://warsztaty.motobelfer.org/">
+        <div class="single-column-header-title">Warsztaty</div>
+        
+        <div class="single-column-header-subtitle">DevOps w chmurze na przykładzie budowania statycznej strony www</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                
+                <img src="http://warsztaty.motobelfer.org/" style="display: none;"></img>
+                <div class="post-title">
+                    AWS Cost Explorer i Budgets
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2020-03-02 00:00
+                        </time>
+                        
+
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <h1 id="zarzadzanie-budgetem-i-monitorowanie-kosztow">Zarzadzanie budgetem i monitorowanie kosztow</h1>
+<p>Amazon Web Services reklamuje swoje uslugi jako <em>placicz tylko za tyle ile zuzyjesz, zadnych oplat wstepnych</em>
+W zwiazku z tym kazda osoba ktora uzywa i tworzy zasoby (resource&rsquo;y) w AWS musi byc swiadoma ile one kosztuja.
+Dotyczy to:</p>
+<ul>
+<li>Deweloperow
+<ul>
+<li>aby usuwali lub wylaczali uslugi z ktorych aktualnie nie korzystaja</li>
+</ul>
+</li>
+<li>DevOps&rsquo;ow
+<ul>
+<li>aby tworzyli infrastrukture w oparciu o Best Practises i Well Architected Framework</li>
+<li>projektujac systemy dla deweloperow mysleli nie tylko o wymaganiach technicznych ale tez o tym ile takie rozwiazanie bedzie kosztowac</li>
+</ul>
+</li>
+<li>SRE&rsquo;s (Site Relability Engineers)
+<ul>
+<li>aby tworzac systemy monitorowania pamietali o kosztach, np. czy np. wysylanie wszystkich logow i eventow do zewnetrznego narzedzia jest wymagane czy moze lepiej filtrowac jeszcze po stronie AWS i wysylac tylko te dane, ktore sa potrzebne.</li>
+<li>monitorowali koszt resource&rsquo;ow wzgledem ich uzycia (wazne w przypadku serwerow wirtualnych w EC2)</li>
+</ul>
+</li>
+<li>Operation Team
+<ul>
+<li>aby jak najszybciej usuwali tymczasowe resource&rsquo;y stworzone przy diagnozowaniu problemow zglaszanych przez uzytkownikow.</li>
+</ul>
+</li>
+</ul>
+<h1 id="aws-budgets">AWS Budgets</h1>
+<p>Narzedzie to oferuje mozliwosc ustalenia swojego budzetu (miesieczny / kwartalny / roczny) i po przekroczeniu go wykonania zadanej akcji.<br>
+Sa 4 typy budzetow:</p>
+<ol>
+<li>Koszty</li>
+<li>Zuzycie zasobow</li>
+<li>Wykorzystanie zakupionych Reserved Instances (RIs)</li>
+<li>Wykorzystanie zakupionych Savings Plans</li>
+</ol>
+<p><img src="/cost-management/budget-types-1.PNG" alt="Typy budzetow"></p>
+<h1 id="aws-cost-explorer">AWS Cost Explorer</h1>
+<p>Narzedzie do monitorowania na biezaco kosztow w ramach jednego konta AWS. Standardowo dane odswiezane sa raz na dobe.<br>
+Posiada rozbudowana mozliwosc filtrowania i grupowania wynikow.<br>
+Aby w pelni wykorzystac mozliwosci tego narzedzia wymagane jest dobre zaplanowanie i konsekwencja w tagowaniu resourcow.
+W przypadku bardzo wielu resource&rsquo;ow i wielu osob uzywajacych tego samego konta AWS bez tagow, identyfikacja kosztow per zespol / projekt jest bardzo trudna i czasochlonna.<br>
+Przyklad:
+<img src="/cost-management/cost-explorer-1.PNG" alt="Przyklad AWS Cost Explorer"></p>
+<h1 id="reserved-instances-i-savings-plans">Reserved Instances i Savings Plans</h1>
+<p>AWS oferuje znizku na niektore swoje serwisy w zamian za zobligowanie sie do ich wykorzystywania przez okreslony czas (1 do 3 lat) w okreslonym zakresie.</p>
+<ul>
+<li>Compute Savings Plans
+<ul>
+<li>znizka do 66%</li>
+<li>dotyczy uzycia serwisow EC2, AWS Fargate, AWS Lambda</li>
+</ul>
+</li>
+<li>EC2 Instance Savings Plans
+<ul>
+<li>znizka do 72%</li>
+<li>dotyczy uzycia wybranego typu instancji (np. m5) w danych regionie (np. EU Frankfurt)</li>
+</ul>
+</li>
+<li>Reserved Instances
+<ul>
+<li>znizka do 75%</li>
+<li>dotyczy uzycia wybranej wielkosci i typu instancji (np. m5.2xlarge) w danym regionie (np. EU Frankfurt) na danej platformie (np. Windows)</li>
+</ul>
+</li>
+</ul>
+<p>Przy zakupie duzej ilosci Reserved Instances jak i Savings Plans nalezy pamietac o podatku (Tax)!</p>
+<p>Uzycie tych planow mozna monitorowowac i skonfigurowac alarmy i notyfikacje tak abysmy byli informowani kiedy nie wykorzystujemy w/w planow.<br>
+Przyklad: moze sie zdarzyc ze w ramach cost optimization wszystkie serwery m4.xlarge zamieniono na m4.large. W zwiazku z tym znizki:</p>
+<ul>
+<li>za serwery m4.large placimy normalna cene (on-demand price)</li>
+<li>placimy w ramach Reserved Instances za serwery m4.xlarge ktorych juz nie ma.</li>
+</ul>
+<h1 id="uslugi-ktore-sa-za-darmo-przez-caly-czas">Uslugi, ktore sa za darmo przez caly czas</h1>
+<p>Przyklady:</p>
+<h2 id="amazon-dynamodb">Amazon DynamoDB</h2>
+<ul>
+<li>25 GB of Storage</li>
+<li>25 provisioned Write Capacity Units (WCU)</li>
+<li>25 provisioned Read Capacity Units (RCU)</li>
+<li>Enough to handle up to 200M requests per month.</li>
+</ul>
+<h2 id="aws-lambda">AWS Lambda</h2>
+<ul>
+<li>1,000,000 milion darmowych requestow na miesiac
+Up to 3.2 million seconds of compute time per month</li>
+</ul>
+<h2 id="amazon-sns">Amazon SNS</h2>
+<ul>
+<li>1,000,000 Publishes</li>
+<li>100,000 HTTP/S Deliveries</li>
+<li>1,000 Email Deliveries</li>
+</ul>
+<h2 id="amazon-cloudwatch">Amazon CloudWatch</h2>
+<ul>
+<li>10 Custom Metrics and 10 Alarms</li>
+<li>1,000,000 API Requests</li>
+<li>5GB of Log Data Ingestion and 5GB of Log Data Archive</li>
+<li>3 Dashboards with up to 50 Metrics Each per Month</li>
+</ul>
+<h2 id="wiecej-na-stronie-aws-free-tierhttpsawsamazoncomfreeall-free-tiersort-byitemadditionalfieldssortrankall-free-tiersort-orderascawsffree20tier20typestier23always-freeawsmpage-all-free-tier1">Wiecej na stronie <a href="https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&amp;all-free-tier.sort-order=asc&amp;awsf.Free%20Tier%20Types=tier%23always-free&amp;awsm.page-all-free-tier=1">AWS Free Tier</a></h2>
+
+                    
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2020-03-02</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="http://warsztaty.motobelfer.org/posts/codepipeline/">
+                    Next<br>Codepipeline
+                </a>
+                
+                
+                
+                <a class="older-posts" href="http://warsztaty.motobelfer.org/posts/messaging/">
+                    Previous<br>Messaging
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">Author: <a href="https://www.linkedin.com/in/maciejmalek/">Maciej Malek</a>
+<br>
+Home Page: <a href="http://maciejmalek.com" target="_blank" rel="noreferrer noopener">maciejmalek.com</a> <br>
+<br>
+&copy;
+	
+	2020 Warsztaty
+	
+</div>
+    	</div>
+    <script src="http://warsztaty.motobelfer.org//js/journal.js"></script>
+    </body>
+</html>

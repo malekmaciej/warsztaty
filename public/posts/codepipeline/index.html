@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html><head>
+<title>Codepipeline</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="http://warsztaty.motobelfer.org/scss/journal.min.f9aa2ef90b19ac8d29363dbd51d4350621537cb3340dd7c6bacf18e3c426f4d5.css" integrity="sha256-&#43;aou&#43;QsZrI0pNj29UdQ1BiFTfLM0DdfGus8Y48Qm9NU=" media="screen">
+
+<script src="http://warsztaty.motobelfer.org//js/loadCSS.js"></script>
+<script src="http://warsztaty.motobelfer.org//js/table.js"></script>
+
+
+<script src="http://warsztaty.motobelfer.org//js/toc.js"></script>
+
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://warsztaty.motobelfer.org/">
+    
+        <div class="nav-title">
+            Warsztaty
+        </div>
+        
+        <div class="nav-subtitle">
+            DevOps w chmurze na przykładzie budowania statycznej strony www
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        Author: <a href="https://www.linkedin.com/in/maciejmalek/">Maciej Malek</a>
+<br>
+Home Page: <a href="http://maciejmalek.com" target="_blank" rel="noreferrer noopener">maciejmalek.com</a> <br>
+<br>
+&copy;
+	
+	2020 Warsztaty
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#utworzenie-pipelinea-do-automatycznego-deploymentu-kodu-z-githubaa-do-aws-s3" v-on:click="closeDrawer" id="utworzenie-pipelinea-do-automatycznego-deploymentu-kodu-z-githubaa-do-aws-s3-nav">
+										 Utworzenie pipeline’a do automatycznego deploymentu kodu z GitHuba’a do AWS S3
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-1" v-on:click="closeDrawer" id="step-1-nav">
+										 Step 1
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-2" v-on:click="closeDrawer" id="step-2-nav">
+										 Step 2
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-3" v-on:click="closeDrawer" id="step-3-nav">
+										 Step 3
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-4" v-on:click="closeDrawer" id="step-4-nav">
+										 Step 4
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#utworzenie-pipelinea-do-automatycznego-deploymentu-kodu-z-githubaa-do-aws-s3" v-on:click="closeDrawer" id="utworzenie-pipelinea-do-automatycznego-deploymentu-kodu-z-githubaa-do-aws-s3-nav">
+										 Utworzenie pipeline’a do automatycznego deploymentu kodu z GitHuba’a do AWS S3
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-1" v-on:click="closeDrawer" id="step-1-nav">
+										 Step 1
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-2" v-on:click="closeDrawer" id="step-2-nav">
+										 Step 2
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-3" v-on:click="closeDrawer" id="step-3-nav">
+										 Step 3
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#step-4" v-on:click="closeDrawer" id="step-4-nav">
+										 Step 4
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="http://warsztaty.motobelfer.org/">
+            Warsztaty
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://warsztaty.motobelfer.org/">
+        <div class="single-column-header-title">Warsztaty</div>
+        
+        <div class="single-column-header-subtitle">DevOps w chmurze na przykładzie budowania statycznej strony www</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                
+                <img src="http://warsztaty.motobelfer.org/" style="display: none;"></img>
+                <div class="post-title">
+                    Codepipeline
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2020-03-03 20:00
+                        </time>
+                        
+
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <h1 id="utworzenie-pipelinea-do-automatycznego-deploymentu-kodu-z-githubaa-do-aws-s3">Utworzenie pipeline&rsquo;a do automatycznego deploymentu kodu z GitHuba&rsquo;a do AWS S3</h1>
+<p><code>Create pipeline</code></p>
+<h2 id="step-1">Step 1</h2>
+<ul>
+<li><strong>Pipeline name</strong> - nalezy podac swoja nazwe</li>
+<li><strong>Service role</strong>
+<ul>
+<li><code>Existing service role</code></li>
+<li>wybieramy juz istniejaca IAM Role o nazwie <code>WarsztatyRole</code>
+<ul>
+<li><strong>Advance settings</strong>
+<ul>
+<li><code>Artifact store</code> -&gt; <code>Default location</code></li>
+<li><code>Encryption key</code> -&gt; <code>Default AWS Managed Key</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="step-2">Step 2</h2>
+<ul>
+<li><strong>Source</strong>
+<ul>
+<li>wybieramy co ma byc zrodlem dla naszego pipeline - do wyboru sa serwisy AWS CodeCommit (repozytorium GIT), Amazon ECR (Elastic Container Registry), Amazon S3, oraz zewnetrze takie jak GutHub, Bitbucket Cloud.</li>
+<li><code>GitHub</code>
+<ul>
+<li><strong>Connect to GitHub</strong></li>
+<li>nalezy sie poprawnie zautoryzowac w serwisie GitHub</li>
+<li>wybieramy rezpozytorium ktore wczesniej stworzyliscie</li>
+<li><strong>Branch</strong> -&gt; <code>master</code></li>
+<li>zostawiamy standardowy sposob notyfikacji czy GitHub webhooks</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="step-3">Step 3</h2>
+<ul>
+<li>Add Build Stage
+<ul>
+<li>to czesc pomijamy, w naszym przypadku bedziemy przesylac pliki bezposrednio z repozytorium GIT na S3 przy kazdym merge&rsquo;u do master branch.</li>
+<li>AWS CodeBuild przyda sie kiedy chcemy automatycznie deploy&rsquo;owac backend (AWS Lambda lub EC2 lub ECS/Fargate)</li>
+<li>wybieramy <code>Skip build stage</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="step-4">Step 4</h2>
+<ul>
+<li>Deploy
+<ul>
+<li><strong>Deploy provider</strong> -&gt; <code>Amazon S3</code></li>
+<li>jest mozliwosc wybrania innych serwisow do ktorych chcemy wyslac nasz kod (jezeli pominelismy Build Stage) lub zbudowana aplikacje.</li>
+<li>wybieramy stworzony wczesniej S3 bucket</li>
+<li>zaznaczamy <strong>Extract file before deploy</strong></li>
+<li>Deployment path pozostawiamy puste</li>
+</ul>
+</li>
+</ul>
+
+                    
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2020-03-05</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="http://warsztaty.motobelfer.org/posts/cloudfront/">
+                    Next<br>Cloudfront
+                </a>
+                
+                
+                
+                <a class="older-posts" href="http://warsztaty.motobelfer.org/posts/cost-management/">
+                    Previous<br>AWS Cost Explorer i Budgets
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">Author: <a href="https://www.linkedin.com/in/maciejmalek/">Maciej Malek</a>
+<br>
+Home Page: <a href="http://maciejmalek.com" target="_blank" rel="noreferrer noopener">maciejmalek.com</a> <br>
+<br>
+&copy;
+	
+	2020 Warsztaty
+	
+</div>
+    	</div>
+    <script src="http://warsztaty.motobelfer.org//js/journal.js"></script>
+    </body>
+</html>

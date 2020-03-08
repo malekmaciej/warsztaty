@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/posts/</loc>
+    <lastmod>2020-03-08T20:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/</loc>
+    <lastmod>2020-03-08T20:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/posts/wprowadzenie/</loc>
+    <lastmod>2020-03-08T20:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/posts/s3/</loc>
+    <lastmod>2020-03-05T20:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/posts/route53/</loc>
+    <lastmod>2020-03-05T20:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/posts/acm/</loc>
+    <lastmod>2020-03-05T20:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/posts/cloudfront/</loc>
+    <lastmod>2020-03-05T20:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/posts/codepipeline/</loc>
+    <lastmod>2020-03-05T20:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/posts/cost-management/</loc>
+    <lastmod>2020-03-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/posts/messaging/</loc>
+    <lastmod>2020-03-01T23:20:20+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>http://warsztaty.motobelfer.org/tags/</loc>
+  </url>
+  
+</urlset>

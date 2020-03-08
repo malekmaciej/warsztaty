@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html><head>
+<title>Route53</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="http://warsztaty.motobelfer.org/scss/journal.min.f9aa2ef90b19ac8d29363dbd51d4350621537cb3340dd7c6bacf18e3c426f4d5.css" integrity="sha256-&#43;aou&#43;QsZrI0pNj29UdQ1BiFTfLM0DdfGus8Y48Qm9NU=" media="screen">
+
+<script src="http://warsztaty.motobelfer.org//js/loadCSS.js"></script>
+<script src="http://warsztaty.motobelfer.org//js/table.js"></script>
+
+
+<script src="http://warsztaty.motobelfer.org//js/toc.js"></script>
+
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://warsztaty.motobelfer.org/">
+    
+        <div class="nav-title">
+            Warsztaty
+        </div>
+        
+        <div class="nav-subtitle">
+            DevOps w chmurze na przykładzie budowania statycznej strony www
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        Author: <a href="https://www.linkedin.com/in/maciejmalek/">Maciej Malek</a>
+<br>
+Home Page: <a href="http://maciejmalek.com" target="_blank" rel="noreferrer noopener">maciejmalek.com</a> <br>
+<br>
+&copy;
+	
+	2020 Warsztaty
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#utworzenie-recordu-in-a-w-domenie-motobelferorg" v-on:click="closeDrawer" id="utworzenie-recordu-in-a-w-domenie-motobelferorg-nav">
+										 Utworzenie recordu IN A w domenie motobelfer.org
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#utworzenie-recordu-in-a-w-domenie-motobelferorg" v-on:click="closeDrawer" id="utworzenie-recordu-in-a-w-domenie-motobelferorg-nav">
+										 Utworzenie recordu IN A w domenie motobelfer.org
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="http://warsztaty.motobelfer.org/">
+            Warsztaty
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://warsztaty.motobelfer.org/">
+        <div class="single-column-header-title">Warsztaty</div>
+        
+        <div class="single-column-header-subtitle">DevOps w chmurze na przykładzie budowania statycznej strony www</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                
+                <img src="http://warsztaty.motobelfer.org/" style="display: none;"></img>
+                <div class="post-title">
+                    Route53
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2020-03-06 20:00
+                        </time>
+                        
+
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <p>Route53 to serwis DNS w ktorym mozemy kupowac domeny i zarzadzac nimi.</p>
+<h1 id="utworzenie-recordu-in-a-w-domenie-motobelferorg">Utworzenie recordu IN A w domenie motobelfer.org</h1>
+<ul>
+<li><code>Hosted zones</code>
+<ul>
+<li><code>motobelfer.org</code> -&gt; <code>Create Record Set</code></li>
+<li>w prawym menu podajemy nazwe (taka sama jak nazwa S3 bucketu ktory wczesniej stworzylismy)</li>
+<li><code>Type: A</code> - <code>IPv4 address</code></li>
+<li><code>Alias</code>: <strong>Yes</strong></li>
+<li><code>Alias Target</code>: wybierzcie swoj bucket z listy <code>S3 website endpoints</code></li>
+<li><code>Create</code>
+<img src="/route53/create-record.PNG" alt="Tworzenie recordu DNS"></li>
+</ul>
+</li>
+</ul>
+<p>Alias do rekordu IN A jest specjalnym typem recordu w Route53.<br>
+Jest to alias do resource&rsquo;u w AWS lub do innego recordu. Dziala podobnie jak IN CNAME.<br>
+Glowna roznica miedzy IN CNAME a Alias IN A to cena. Ten pierwszy kosztuje $0.50 a drugi jest darmowy.</p>
+
+                    
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2020-03-05</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="http://warsztaty.motobelfer.org/posts/s3/">
+                    Next<br>S3
+                </a>
+                
+                
+                
+                <a class="older-posts" href="http://warsztaty.motobelfer.org/posts/acm/">
+                    Previous<br>AWS Certificate Manager
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">Author: <a href="https://www.linkedin.com/in/maciejmalek/">Maciej Malek</a>
+<br>
+Home Page: <a href="http://maciejmalek.com" target="_blank" rel="noreferrer noopener">maciejmalek.com</a> <br>
+<br>
+&copy;
+	
+	2020 Warsztaty
+	
+</div>
+    	</div>
+    <script src="http://warsztaty.motobelfer.org//js/journal.js"></script>
+    </body>
+</html>

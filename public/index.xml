@@ -1,0 +1,577 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Warsztaty</title>
+    <link>http://warsztaty.motobelfer.org/</link>
+    <description>Recent content on Warsztaty</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pl-PL</language>
+    <lastBuildDate>Sun, 08 Mar 2020 20:00:00 +0100</lastBuildDate>
+    
+        <atom:link href="http://warsztaty.motobelfer.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Wprowadzenie</title>
+        <link>http://warsztaty.motobelfer.org/posts/wprowadzenie/</link>
+        <pubDate>Sun, 08 Mar 2020 20:00:00 +0100</pubDate>
+        
+        <guid>http://warsztaty.motobelfer.org/posts/wprowadzenie/</guid>
+        <description>Warsztaty http://warsztaty.motobelfer.org/posts/wprowadzenie/ -&lt;h1 id=&#34;cel-kursu&#34;&gt;Cel kursu&lt;/h1&gt;
+&lt;p&gt;Celem jest zapoznanie uczestnikow z podstawowymi uslugami dostepnymi w chmurze AWS.&lt;/p&gt;
+&lt;p&gt;Uczestnicy poznaja kilka serwisow z nastepujacych obszarow:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Storage
+&lt;ul&gt;
+&lt;li&gt;S3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Networking &amp;amp; Content Delivery
+&lt;ul&gt;
+&lt;li&gt;Route 53&lt;/li&gt;
+&lt;li&gt;CloudFront&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Developer Tools
+&lt;ul&gt;
+&lt;li&gt;CodePipeline&lt;/li&gt;
+&lt;li&gt;CodeDeploy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Security, Identity, &amp;amp; Compliance
+&lt;ul&gt;
+&lt;li&gt;Certificate Manager&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Application Integration
+&lt;ul&gt;
+&lt;li&gt;AWS Budgets&lt;/li&gt;
+&lt;li&gt;AWS Cost Explorer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;architektura&#34;&gt;Architektura&lt;/h1&gt;
+&lt;p&gt;W ramach zajec przygotuja samodzielnie statyczna strone www oraz system do automatycznej aktualizacji kodu z repozytorium Git znajdujacego sie w serwisie GitHub.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://warsztaty.motobelfer.org/wprowadzenie/MotoBelfer-AWS-Web-Application-Publishing.jpeg&#34; alt=&#34;AWS Static Web Page code deployment.&#34;&gt;&lt;/p&gt;
+- http://warsztaty.motobelfer.org/posts/wprowadzenie/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>S3</title>
+        <link>http://warsztaty.motobelfer.org/posts/s3/</link>
+        <pubDate>Sat, 07 Mar 2020 23:00:00 +0100</pubDate>
+        
+        <guid>http://warsztaty.motobelfer.org/posts/s3/</guid>
+        <description>Warsztaty http://warsztaty.motobelfer.org/posts/s3/ -&lt;h1 id=&#34;amazon-simple-storage-service-amazon-s3&#34;&gt;Amazon Simple Storage Service (Amazon S3)&lt;/h1&gt;
+&lt;p&gt;Internetowy nośnik danych, który umożliwia dostęp do przechowywanych danych i zarządzanie nimi. Ilość przechowywanych danych jest praktycznie nielimitowana.&lt;/p&gt;
+&lt;p&gt;Glowne funkcje:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Kopie zapasowe&lt;/li&gt;
+&lt;li&gt;Archwizacja danych&lt;/li&gt;
+&lt;li&gt;Jezioro danych (data lake)&lt;/li&gt;
+&lt;li&gt;Hosting statycznych stron www&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kazdy S3 bucket ma swoj region.&lt;br&gt;
+W odroznieniu od innych regionalnych serwisow, gdzie widzimy tylko resource&amp;rsquo;y w danym regionie, tutaj mamy jeden widok z wszystkimi bucketami utworzonymi na danym koncie AWS, a region jest atrybutem. 
+&lt;img src=&#34;http://warsztaty.motobelfer.org/s3/s3-regions-list.PNG&#34; alt=&#34;Lista bucketow z regionami&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;zadania-do-wykonania-na-zajeciach&#34;&gt;Zadania do wykonania na zajeciach:&lt;/h1&gt;
+&lt;p&gt;Utworzenie S3 bucket&amp;rsquo;u w regionie Frankfurt jak serwera hostujacego statyczna strone www
+Nazwa bucketu musi byc taka sama jak bedzie URL strony www.
+Ustawienie bucket jako publiczny (Block all public access - Off).&lt;/p&gt;
+&lt;h2 id=&#34;tworzenie-bucketa&#34;&gt;Tworzenie bucket&amp;rsquo;a&lt;/h2&gt;
+&lt;h3 id=&#34;name-and-region&#34;&gt;Name and region&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Create bucket&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Bucket name
+&lt;ul&gt;
+&lt;li&gt;aby utworzyc statyczna strone www na S3, nazwa bucketu musi byc taka sama jak bedzie URL strony www.&lt;/li&gt;
+&lt;li&gt;przykad: &lt;em&gt;warsztaty.motobelfer.org&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Region&lt;/code&gt; -&amp;gt; &lt;strong&gt;EU (Frankfurt)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Copy setting from an exisiting bucket&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;pozostawimy bez zmian&lt;/strong&gt;
+&lt;img src=&#34;http://warsztaty.motobelfer.org/s3/step-1.PNG&#34; alt=&#34;Lista bucketow z regionami&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;configure-options&#34;&gt;Configure options&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Versioning&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;pozostawiamy odznaczone&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;nie potrzebujemy wersjonowania obiektow, do wersjonowania naszego kody bedziemy uzywac GIT&amp;rsquo;a&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Server access logging&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;pozostawiamy odznaczone&lt;/strong&gt; - nie bedziemy uzywac tej funkcji.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Tags&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;podajemy przynajmniej &amp;ldquo;owner&amp;rdquo; = &amp;ldquo;nazwa uzytkownika&amp;rdquo;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;maksymalnie mozna stworzyc do 50 tagow&lt;/li&gt;
+&lt;li&gt;key moze miec od 1 do 128 znakow, value moze miec od 0 do 256 znakow.&lt;/li&gt;
+&lt;li&gt;wielkosc liter ma znaczenie&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Object-level logging&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;pozostawiamy odznaczone&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;sluzy do logowanie w usludze CloudTrail wszystkich akcji na obiektach w buckecie.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Default encryption&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;pozostawiamy odznaczone&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;w przypadku statyczniej strony www, ktora bedzie ogolnodostepna, nie ma potrzeby szyfrowania objektow  w bucketcie, a jezeli juz to nalezy wybrac AES-256
+&lt;img src=&#34;http://warsztaty.motobelfer.org/s3/step-2.PNG&#34; alt=&#34;Opcje konfiguracyjne&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;set-permissions&#34;&gt;Set permissions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Block public access (bucket settings)
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;odznaczamy Block all public access&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;nasz bucket i strona beda publicznie dostepne&lt;/li&gt;
+&lt;li&gt;trzeba potwierdzic &lt;code&gt;I acknowledge that the current settings may result in this bucket and the objects within becoming public&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Manage system permissions
+&lt;ul&gt;
+&lt;li&gt;zostawiamy &lt;code&gt;Do not grant Amazon S3 Log Delivery group write access to this bucket&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;opcja potrzebna gdy chcielibysmy dostarczac logi z innych serwerisow do naszego bucket&amp;rsquo;a, np. z Elastic Load Balancer
+&lt;img src=&#34;http://warsztaty.motobelfer.org/s3/step-3.PNG&#34; alt=&#34;Uprawnienia na buckecie&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;review&#34;&gt;Review&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;przegladamy czy wszystko poprawnie skonfigurowalismy i klikamy &lt;code&gt;Create bucket&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;konfiguracja-bucketa-do-serwowania-stron-www&#34;&gt;Konfiguracja bucket&amp;rsquo;a do serwowania stron www.&lt;/h2&gt;
+&lt;h3 id=&#34;permissions&#34;&gt;Permissions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Bucket Policy
+&lt;ul&gt;
+&lt;li&gt;Musimy zezwolic na dostep do objektow w naszym buckecie
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;Version&amp;quot;: &amp;quot;2012-10-17&amp;quot;,
+    &amp;quot;Id&amp;quot;: &amp;quot;Policy1574148822995&amp;quot;,
+    &amp;quot;Statement&amp;quot;: [
+        {
+            &amp;quot;Sid&amp;quot;: &amp;quot;Stmt1574148821125&amp;quot;,
+            &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;,
+            &amp;quot;Principal&amp;quot;: &amp;quot;*&amp;quot;,
+            &amp;quot;Action&amp;quot;: &amp;quot;s3:GetObject&amp;quot;,
+            &amp;quot;Resource&amp;quot;: &amp;quot;arn:aws:s3:::warsztaty.motobelfer.org/*&amp;quot;
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;nie zapomnijcie poprawic nazwy bucket&amp;rsquo;a na swoj !
+&lt;img src=&#34;http://warsztaty.motobelfer.org/s3/step-4.PNG&#34; alt=&#34;Uprawnienia do obiektow&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;properties&#34;&gt;Properties&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Static website hosting
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Use this bucket to host a website&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Index document&lt;/code&gt; -&amp;gt; &lt;strong&gt;index.html&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Error document&lt;/code&gt; -&amp;gt; &lt;strong&gt;error.html&lt;/strong&gt;
+&lt;img src=&#34;http://warsztaty.motobelfer.org/s3/step-5.PNG&#34; alt=&#34;Ustawienia strony www&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+- http://warsztaty.motobelfer.org/posts/s3/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Route53</title>
+        <link>http://warsztaty.motobelfer.org/posts/route53/</link>
+        <pubDate>Fri, 06 Mar 2020 20:00:00 +0000</pubDate>
+        
+        <guid>http://warsztaty.motobelfer.org/posts/route53/</guid>
+        <description>Warsztaty http://warsztaty.motobelfer.org/posts/route53/ -&lt;p&gt;Route53 to serwis DNS w ktorym mozemy kupowac domeny i zarzadzac nimi.&lt;/p&gt;
+&lt;h1 id=&#34;utworzenie-recordu-in-a-w-domenie-motobelferorg&#34;&gt;Utworzenie recordu IN A w domenie motobelfer.org&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Hosted zones&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;motobelfer.org&lt;/code&gt; -&amp;gt; &lt;code&gt;Create Record Set&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;w prawym menu podajemy nazwe (taka sama jak nazwa S3 bucketu ktory wczesniej stworzylismy)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Type: A&lt;/code&gt; - &lt;code&gt;IPv4 address&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Alias&lt;/code&gt;: &lt;strong&gt;Yes&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Alias Target&lt;/code&gt;: wybierzcie swoj bucket z listy &lt;code&gt;S3 website endpoints&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Create&lt;/code&gt;
+&lt;img src=&#34;http://warsztaty.motobelfer.org/route53/create-record.PNG&#34; alt=&#34;Tworzenie recordu DNS&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Alias do rekordu IN A jest specjalnym typem recordu w Route53.&lt;br&gt;
+Jest to alias do resource&amp;rsquo;u w AWS lub do innego recordu. Dziala podobnie jak IN CNAME.&lt;br&gt;
+Glowna roznica miedzy IN CNAME a Alias IN A to cena. Ten pierwszy kosztuje $0.50 a drugi jest darmowy.&lt;/p&gt;
+- http://warsztaty.motobelfer.org/posts/route53/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>AWS Certificate Manager</title>
+        <link>http://warsztaty.motobelfer.org/posts/acm/</link>
+        <pubDate>Thu, 05 Mar 2020 20:00:00 +0000</pubDate>
+        
+        <guid>http://warsztaty.motobelfer.org/posts/acm/</guid>
+        <description>Warsztaty http://warsztaty.motobelfer.org/posts/acm/ -&lt;h1 id=&#34;utworzenie-certyfikatu-ssl-w-aws-certificate-manager&#34;&gt;Utworzenie certyfikatu SSL w AWS Certificate Manager&lt;/h1&gt;
+&lt;p&gt;Serwis - AWS Certificate Manager&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;wybierzcie region - N. Virginia (prawy górny róg)
+&lt;ul&gt;
+&lt;li&gt;jest to bardzo wazne gdyz usługa &lt;code&gt;CloudFront&lt;/code&gt; nie jest zregionalizowana i nie mozemy w tym przypadku użyć regionu Frankfurt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Request a certificate&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;nalezy wybrac &lt;code&gt;Request a public certificate&lt;/code&gt; -&amp;gt; Request a certificate&lt;/li&gt;
+&lt;li&gt;w &lt;code&gt;Domain name&lt;/code&gt; nalezy podac pełna nazwe swojej domeny dla ktorej tworzycie certyfikat np. &lt;strong&gt;jannowak.motobelfer.org&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;prosze wybrac &lt;code&gt;DNS validation&lt;/code&gt; (czyli utworzenie specjalnego rekordu IN CNAME ktory potwierdzi dostep do domeny w ktorej tworzycie certyfikat)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;tagi
+&lt;ul&gt;
+&lt;li&gt;Tag &lt;strong&gt;Name = owner&lt;/strong&gt;, &lt;strong&gt;Value = &amp;lt;nazwa waszego użytkownika&amp;gt;&lt;!-- raw HTML omitted --&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;następnie &lt;code&gt;Review&lt;/code&gt; i &lt;code&gt;Confirm&lt;/code&gt; - nalezy chwile poczekac na przetworzenie zgloszenia.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Validation&lt;/code&gt; - tworzymy record DNS w Route53 
+&lt;img src=&#34;http://warsztaty.motobelfer.org/acm/SSL_DNS_Validation.png&#34; alt=&#34;SSL Certificate DNS validation&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Teraz trzeba poczekac az certyikat zostanie utworzony i zwalidowany.&lt;/p&gt;
+- http://warsztaty.motobelfer.org/posts/acm/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Cloudfront</title>
+        <link>http://warsztaty.motobelfer.org/posts/cloudfront/</link>
+        <pubDate>Wed, 04 Mar 2020 22:00:00 +0100</pubDate>
+        
+        <guid>http://warsztaty.motobelfer.org/posts/cloudfront/</guid>
+        <description>Warsztaty http://warsztaty.motobelfer.org/posts/cloudfront/ -&lt;h1 id=&#34;co-to-jest-cloudfront&#34;&gt;Co to jest CloudFront?&lt;/h1&gt;
+&lt;p&gt;CloudFront to CDN Content Delivery Network – jest to usługa polegająca na instalowaniu fragmentów strony internetowej na wielu serwerach na całym świecie (sieć odwrotnych serwerów pośredniczących tzw. Reverse Proxy). W efekcie, strona działa zawsze szybciej, dysponujemy dużo większą przepustowością łączy ale co najważniejsze, lokalizacja serwera (czyli to gdzie jest przechowywana strona internetowa) przestaje mieć jakiekolwiek przełożenie na dodatkowe opóźnienia wynikające z odległości jaką musi pokonać połączenie internetowe.&lt;/p&gt;
+&lt;h1 id=&#34;zadania-do-wykonania-na-zajeciach&#34;&gt;Zadania do wykonania na zajeciach:&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Create Distribution&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;wybieramy &lt;strong&gt;Web&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Get Started&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Origin Domain Name&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;wybieramy swój S3 bucket&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Origin Path&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;zostawiamy puste&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Origin ID&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;wygenerowało się automatycznie - &lt;strong&gt;zostawiamy tak jak jest&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Restrict Bucket Access&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;do celów szkoleniowych zostawiamy &lt;strong&gt;No&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;W pracy, ze względów bezpieczeństwa, zawsze włączamy tak aby mozna bylo sie odwolac do naszej strony tylko przez CloudFront a nie bezposrednio do S3.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Origin Custom Headers&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;pozostawiamy puste&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Viewer Protocol Policy&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;zmieniamy na &lt;strong&gt;Redirect HTTP to HTTPS&lt;/strong&gt;
+&lt;img src=&#34;http://warsztaty.motobelfer.org/cloudfront/step-1.PNG&#34; alt=&#34;Pierwszy krok&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Object Caching&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;wybieramy &lt;strong&gt;Customize&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;zmieniamy &lt;code&gt;Maximum TTL&lt;/code&gt; i &lt;code&gt;Default TTL&lt;/code&gt; na &lt;strong&gt;30&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Jest to czas jaki pliki naszej strony beda trzymane w cache&amp;rsquo;u CloudFronta - do dewelopmentu potrzebujemy miec mala wartosc tak aby zmiany w kodzie byly szybko widoczne.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Distribution Settings&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Price Class -&amp;gt; &lt;strong&gt;Use Only U.S., Canada and Europe&lt;/strong&gt;
+&lt;img src=&#34;http://warsztaty.motobelfer.org/cloudfront/step-2.PNG&#34; alt=&#34;Drugi krok&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Alternate Domain Names (CNAMEs)&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;wpisujemy nasza domene np. jannowak.motobelfer.org&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SSL Certificate&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;ustawiamy &lt;strong&gt;Custom SSL Certificate&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;wybieramy nasz wcześniej utworzony certyfikat (lub certyfikat z * jezeli nasz certyfikat nie zostal jeszcze zwalidowany)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Default Root Object&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;to jest główny plik naszej strony - wpisujemy &lt;strong&gt;index.html&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Create Distribution&lt;/strong&gt; - czas tworzenia sie dystrybucji to okolo 20 minut.
+&lt;img src=&#34;http://warsztaty.motobelfer.org/cloudfront/step-3.PNG&#34; alt=&#34;Trzeci krok&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Po utworzeniu dystrybucji przechodzimy do Route53 i modyfikujemy nasz DNSowy record tak aby zamiast na S3 wskazywal na nasza dystrybucje CloudFront ktora powinna byc na liscie.&lt;/p&gt;
+- http://warsztaty.motobelfer.org/posts/cloudfront/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Codepipeline</title>
+        <link>http://warsztaty.motobelfer.org/posts/codepipeline/</link>
+        <pubDate>Tue, 03 Mar 2020 20:00:00 +0000</pubDate>
+        
+        <guid>http://warsztaty.motobelfer.org/posts/codepipeline/</guid>
+        <description>Warsztaty http://warsztaty.motobelfer.org/posts/codepipeline/ -&lt;h1 id=&#34;utworzenie-pipelinea-do-automatycznego-deploymentu-kodu-z-githubaa-do-aws-s3&#34;&gt;Utworzenie pipeline&amp;rsquo;a do automatycznego deploymentu kodu z GitHuba&amp;rsquo;a do AWS S3&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;Create pipeline&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;step-1&#34;&gt;Step 1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pipeline name&lt;/strong&gt; - nalezy podac swoja nazwe&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Service role&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Existing service role&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;wybieramy juz istniejaca IAM Role o nazwie &lt;code&gt;WarsztatyRole&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Advance settings&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Artifact store&lt;/code&gt; -&amp;gt; &lt;code&gt;Default location&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Encryption key&lt;/code&gt; -&amp;gt; &lt;code&gt;Default AWS Managed Key&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-2&#34;&gt;Step 2&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Source&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;wybieramy co ma byc zrodlem dla naszego pipeline - do wyboru sa serwisy AWS CodeCommit (repozytorium GIT), Amazon ECR (Elastic Container Registry), Amazon S3, oraz zewnetrze takie jak GutHub, Bitbucket Cloud.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GitHub&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Connect to GitHub&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;nalezy sie poprawnie zautoryzowac w serwisie GitHub&lt;/li&gt;
+&lt;li&gt;wybieramy rezpozytorium ktore wczesniej stworzyliscie&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Branch&lt;/strong&gt; -&amp;gt; &lt;code&gt;master&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;zostawiamy standardowy sposob notyfikacji czy GitHub webhooks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-3&#34;&gt;Step 3&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Add Build Stage
+&lt;ul&gt;
+&lt;li&gt;to czesc pomijamy, w naszym przypadku bedziemy przesylac pliki bezposrednio z repozytorium GIT na S3 przy kazdym merge&amp;rsquo;u do master branch.&lt;/li&gt;
+&lt;li&gt;AWS CodeBuild przyda sie kiedy chcemy automatycznie deploy&amp;rsquo;owac backend (AWS Lambda lub EC2 lub ECS/Fargate)&lt;/li&gt;
+&lt;li&gt;wybieramy &lt;code&gt;Skip build stage&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-4&#34;&gt;Step 4&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Deploy
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Deploy provider&lt;/strong&gt; -&amp;gt; &lt;code&gt;Amazon S3&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;jest mozliwosc wybrania innych serwisow do ktorych chcemy wyslac nasz kod (jezeli pominelismy Build Stage) lub zbudowana aplikacje.&lt;/li&gt;
+&lt;li&gt;wybieramy stworzony wczesniej S3 bucket&lt;/li&gt;
+&lt;li&gt;zaznaczamy &lt;strong&gt;Extract file before deploy&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Deployment path pozostawiamy puste&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+- http://warsztaty.motobelfer.org/posts/codepipeline/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>AWS Cost Explorer i Budgets</title>
+        <link>http://warsztaty.motobelfer.org/posts/cost-management/</link>
+        <pubDate>Mon, 02 Mar 2020 00:00:00 +0000</pubDate>
+        
+        <guid>http://warsztaty.motobelfer.org/posts/cost-management/</guid>
+        <description>Warsztaty http://warsztaty.motobelfer.org/posts/cost-management/ -&lt;h1 id=&#34;zarzadzanie-budgetem-i-monitorowanie-kosztow&#34;&gt;Zarzadzanie budgetem i monitorowanie kosztow&lt;/h1&gt;
+&lt;p&gt;Amazon Web Services reklamuje swoje uslugi jako &lt;em&gt;placicz tylko za tyle ile zuzyjesz, zadnych oplat wstepnych&lt;/em&gt;
+W zwiazku z tym kazda osoba ktora uzywa i tworzy zasoby (resource&amp;rsquo;y) w AWS musi byc swiadoma ile one kosztuja.
+Dotyczy to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Deweloperow
+&lt;ul&gt;
+&lt;li&gt;aby usuwali lub wylaczali uslugi z ktorych aktualnie nie korzystaja&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;DevOps&amp;rsquo;ow
+&lt;ul&gt;
+&lt;li&gt;aby tworzyli infrastrukture w oparciu o Best Practises i Well Architected Framework&lt;/li&gt;
+&lt;li&gt;projektujac systemy dla deweloperow mysleli nie tylko o wymaganiach technicznych ale tez o tym ile takie rozwiazanie bedzie kosztowac&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SRE&amp;rsquo;s (Site Relability Engineers)
+&lt;ul&gt;
+&lt;li&gt;aby tworzac systemy monitorowania pamietali o kosztach, np. czy np. wysylanie wszystkich logow i eventow do zewnetrznego narzedzia jest wymagane czy moze lepiej filtrowac jeszcze po stronie AWS i wysylac tylko te dane, ktore sa potrzebne.&lt;/li&gt;
+&lt;li&gt;monitorowali koszt resource&amp;rsquo;ow wzgledem ich uzycia (wazne w przypadku serwerow wirtualnych w EC2)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Operation Team
+&lt;ul&gt;
+&lt;li&gt;aby jak najszybciej usuwali tymczasowe resource&amp;rsquo;y stworzone przy diagnozowaniu problemow zglaszanych przez uzytkownikow.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;aws-budgets&#34;&gt;AWS Budgets&lt;/h1&gt;
+&lt;p&gt;Narzedzie to oferuje mozliwosc ustalenia swojego budzetu (miesieczny / kwartalny / roczny) i po przekroczeniu go wykonania zadanej akcji.&lt;br&gt;
+Sa 4 typy budzetow:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Koszty&lt;/li&gt;
+&lt;li&gt;Zuzycie zasobow&lt;/li&gt;
+&lt;li&gt;Wykorzystanie zakupionych Reserved Instances (RIs)&lt;/li&gt;
+&lt;li&gt;Wykorzystanie zakupionych Savings Plans&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;http://warsztaty.motobelfer.org/cost-management/budget-types-1.PNG&#34; alt=&#34;Typy budzetow&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;aws-cost-explorer&#34;&gt;AWS Cost Explorer&lt;/h1&gt;
+&lt;p&gt;Narzedzie do monitorowania na biezaco kosztow w ramach jednego konta AWS. Standardowo dane odswiezane sa raz na dobe.&lt;br&gt;
+Posiada rozbudowana mozliwosc filtrowania i grupowania wynikow.&lt;br&gt;
+Aby w pelni wykorzystac mozliwosci tego narzedzia wymagane jest dobre zaplanowanie i konsekwencja w tagowaniu resourcow.
+W przypadku bardzo wielu resource&amp;rsquo;ow i wielu osob uzywajacych tego samego konta AWS bez tagow, identyfikacja kosztow per zespol / projekt jest bardzo trudna i czasochlonna.&lt;br&gt;
+Przyklad:
+&lt;img src=&#34;http://warsztaty.motobelfer.org/cost-management/cost-explorer-1.PNG&#34; alt=&#34;Przyklad AWS Cost Explorer&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;reserved-instances-i-savings-plans&#34;&gt;Reserved Instances i Savings Plans&lt;/h1&gt;
+&lt;p&gt;AWS oferuje znizku na niektore swoje serwisy w zamian za zobligowanie sie do ich wykorzystywania przez okreslony czas (1 do 3 lat) w okreslonym zakresie.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Compute Savings Plans
+&lt;ul&gt;
+&lt;li&gt;znizka do 66%&lt;/li&gt;
+&lt;li&gt;dotyczy uzycia serwisow EC2, AWS Fargate, AWS Lambda&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;EC2 Instance Savings Plans
+&lt;ul&gt;
+&lt;li&gt;znizka do 72%&lt;/li&gt;
+&lt;li&gt;dotyczy uzycia wybranego typu instancji (np. m5) w danych regionie (np. EU Frankfurt)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reserved Instances
+&lt;ul&gt;
+&lt;li&gt;znizka do 75%&lt;/li&gt;
+&lt;li&gt;dotyczy uzycia wybranej wielkosci i typu instancji (np. m5.2xlarge) w danym regionie (np. EU Frankfurt) na danej platformie (np. Windows)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Przy zakupie duzej ilosci Reserved Instances jak i Savings Plans nalezy pamietac o podatku (Tax)!&lt;/p&gt;
+&lt;p&gt;Uzycie tych planow mozna monitorowowac i skonfigurowac alarmy i notyfikacje tak abysmy byli informowani kiedy nie wykorzystujemy w/w planow.&lt;br&gt;
+Przyklad: moze sie zdarzyc ze w ramach cost optimization wszystkie serwery m4.xlarge zamieniono na m4.large. W zwiazku z tym znizki:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;za serwery m4.large placimy normalna cene (on-demand price)&lt;/li&gt;
+&lt;li&gt;placimy w ramach Reserved Instances za serwery m4.xlarge ktorych juz nie ma.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;uslugi-ktore-sa-za-darmo-przez-caly-czas&#34;&gt;Uslugi, ktore sa za darmo przez caly czas&lt;/h1&gt;
+&lt;p&gt;Przyklady:&lt;/p&gt;
+&lt;h2 id=&#34;amazon-dynamodb&#34;&gt;Amazon DynamoDB&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;25 GB of Storage&lt;/li&gt;
+&lt;li&gt;25 provisioned Write Capacity Units (WCU)&lt;/li&gt;
+&lt;li&gt;25 provisioned Read Capacity Units (RCU)&lt;/li&gt;
+&lt;li&gt;Enough to handle up to 200M requests per month.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;aws-lambda&#34;&gt;AWS Lambda&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;1,000,000 milion darmowych requestow na miesiac
+Up to 3.2 million seconds of compute time per month&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;amazon-sns&#34;&gt;Amazon SNS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;1,000,000 Publishes&lt;/li&gt;
+&lt;li&gt;100,000 HTTP/S Deliveries&lt;/li&gt;
+&lt;li&gt;1,000 Email Deliveries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;amazon-cloudwatch&#34;&gt;Amazon CloudWatch&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;10 Custom Metrics and 10 Alarms&lt;/li&gt;
+&lt;li&gt;1,000,000 API Requests&lt;/li&gt;
+&lt;li&gt;5GB of Log Data Ingestion and 5GB of Log Data Archive&lt;/li&gt;
+&lt;li&gt;3 Dashboards with up to 50 Metrics Each per Month&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;wiecej-na-stronie-aws-free-tierhttpsawsamazoncomfreeall-free-tiersort-byitemadditionalfieldssortrankall-free-tiersort-orderascawsffree20tier20typestier23always-freeawsmpage-all-free-tier1&#34;&gt;Wiecej na stronie &lt;a href=&#34;https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&amp;amp;all-free-tier.sort-order=asc&amp;amp;awsf.Free%20Tier%20Types=tier%23always-free&amp;amp;awsm.page-all-free-tier=1&#34;&gt;AWS Free Tier&lt;/a&gt;&lt;/h2&gt;
+- http://warsztaty.motobelfer.org/posts/cost-management/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Messaging</title>
+        <link>http://warsztaty.motobelfer.org/posts/messaging/</link>
+        <pubDate>Sun, 01 Mar 2020 23:20:20 +0100</pubDate>
+        
+        <guid>http://warsztaty.motobelfer.org/posts/messaging/</guid>
+        <description>Warsztaty http://warsztaty.motobelfer.org/posts/messaging/ -&lt;h1 id=&#34;ses---simple-email-service&#34;&gt;SES - Simple Email Service&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Różne protokoły (SMTP , REST API, AWS CLI, AWS SDK)&lt;/li&gt;
+&lt;li&gt;Wsparcie dla nagłówków email&lt;/li&gt;
+&lt;li&gt;Załaczniki, HTML, templates&lt;/li&gt;
+&lt;li&gt;Możliwość wysyłania i odbierania maili na dużą skalę&lt;/li&gt;
+&lt;li&gt;Symulator&lt;/li&gt;
+&lt;li&gt;Cena&lt;/li&gt;
+&lt;li&gt;Służy do komunikacji z ludźmi (email)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;sns---simple-notification-service&#34;&gt;SNS - Simple Notification Service&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Integracja z większością serwisów AWS&lt;/li&gt;
+&lt;li&gt;Typ - jeden nadawca -&amp;gt; wielu odbiorców&lt;/li&gt;
+&lt;li&gt;Limit na długość wiadomości to 8192 znaki UTF-8&lt;/li&gt;
+&lt;li&gt;Brak możliwości przesyłania załączników, HTML&lt;/li&gt;
+&lt;li&gt;Wymagane potwierdzenie odbiorcy przy subskrypcji&lt;/li&gt;
+&lt;li&gt;Służy do natychmiastowej komunikacji pomiędzy aplikacjami lub serwisami AWS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;sqs---simple-queue-service&#34;&gt;SQS - Simple Queue Service&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Najstarsza usługa AWS&lt;/li&gt;
+&lt;li&gt;Możliwość wyboru standardowej kolejki lub FIFO (First-In-First-Out)&lt;/li&gt;
+&lt;li&gt;Możliwość przechowywania wiadomości do 14 dni&lt;/li&gt;
+&lt;li&gt;Brak ograniczeń w ilość wiadomości w kolejce&lt;/li&gt;
+&lt;li&gt;Standardowo maksymalna wielkość wiadomości to 256KB&lt;/li&gt;
+&lt;li&gt;Służy do buforowania wiadomość - wielu nadawców -&amp;gt; jeden odbiorca&lt;/li&gt;
+&lt;/ul&gt;
+- http://warsztaty.motobelfer.org/posts/messaging/ - </description>
+        </item>
+    
+    
+  </channel>
+</rss> 

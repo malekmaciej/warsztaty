@@ -1,0 +1,7 @@
+baseURL = "http://warsztaty.motobelfer.org/"
+languageCode = "pl-PL"
+title = "Warsztaty"
+theme = "diary"
+
+[params]
+subtitle = "DevOps w chmurze na przykładzie budowania statycznej strony www"

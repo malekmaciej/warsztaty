@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html><head>
+<title>Cloudfront</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="http://warsztaty.motobelfer.org/scss/journal.min.f9aa2ef90b19ac8d29363dbd51d4350621537cb3340dd7c6bacf18e3c426f4d5.css" integrity="sha256-&#43;aou&#43;QsZrI0pNj29UdQ1BiFTfLM0DdfGus8Y48Qm9NU=" media="screen">
+
+<script src="http://warsztaty.motobelfer.org//js/loadCSS.js"></script>
+<script src="http://warsztaty.motobelfer.org//js/table.js"></script>
+
+
+<script src="http://warsztaty.motobelfer.org//js/toc.js"></script>
+
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://warsztaty.motobelfer.org/">
+    
+        <div class="nav-title">
+            Warsztaty
+        </div>
+        
+        <div class="nav-subtitle">
+            DevOps w chmurze na przykładzie budowania statycznej strony www
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        Author: <a href="https://www.linkedin.com/in/maciejmalek/">Maciej Malek</a>
+<br>
+Home Page: <a href="http://maciejmalek.com" target="_blank" rel="noreferrer noopener">maciejmalek.com</a> <br>
+<br>
+&copy;
+	
+	2020 Warsztaty
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#co-to-jest-cloudfront" v-on:click="closeDrawer" id="co-to-jest-cloudfront-nav">
+										 Co to jest CloudFront?
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#zadania-do-wykonania-na-zajeciach" v-on:click="closeDrawer" id="zadania-do-wykonania-na-zajeciach-nav">
+										 Zadania do wykonania na zajeciach:
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#co-to-jest-cloudfront" v-on:click="closeDrawer" id="co-to-jest-cloudfront-nav">
+										 Co to jest CloudFront?
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#zadania-do-wykonania-na-zajeciach" v-on:click="closeDrawer" id="zadania-do-wykonania-na-zajeciach-nav">
+										 Zadania do wykonania na zajeciach:
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="http://warsztaty.motobelfer.org/">
+            Warsztaty
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://warsztaty.motobelfer.org/">
+        <div class="single-column-header-title">Warsztaty</div>
+        
+        <div class="single-column-header-subtitle">DevOps w chmurze na przykładzie budowania statycznej strony www</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                
+                <img src="http://warsztaty.motobelfer.org/" style="display: none;"></img>
+                <div class="post-title">
+                    Cloudfront
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2020-03-04 22:00
+                        </time>
+                        
+
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <h1 id="co-to-jest-cloudfront">Co to jest CloudFront?</h1>
+<p>CloudFront to CDN Content Delivery Network – jest to usługa polegająca na instalowaniu fragmentów strony internetowej na wielu serwerach na całym świecie (sieć odwrotnych serwerów pośredniczących tzw. Reverse Proxy). W efekcie, strona działa zawsze szybciej, dysponujemy dużo większą przepustowością łączy ale co najważniejsze, lokalizacja serwera (czyli to gdzie jest przechowywana strona internetowa) przestaje mieć jakiekolwiek przełożenie na dodatkowe opóźnienia wynikające z odległości jaką musi pokonać połączenie internetowe.</p>
+<h1 id="zadania-do-wykonania-na-zajeciach">Zadania do wykonania na zajeciach:</h1>
+<ul>
+<li><code>Create Distribution</code>
+<ul>
+<li>wybieramy <strong>Web</strong> -&gt; <strong>Get Started</strong></li>
+<li><code>Origin Domain Name</code>
+<ul>
+<li><strong>wybieramy swój S3 bucket</strong></li>
+</ul>
+</li>
+<li><code>Origin Path</code>
+<ul>
+<li><strong>zostawiamy puste</strong></li>
+</ul>
+</li>
+<li><code>Origin ID</code>
+<ul>
+<li>wygenerowało się automatycznie - <strong>zostawiamy tak jak jest</strong></li>
+</ul>
+</li>
+<li><code>Restrict Bucket Access</code>
+<ul>
+<li>do celów szkoleniowych zostawiamy <strong>No</strong>.</li>
+<li>W pracy, ze względów bezpieczeństwa, zawsze włączamy tak aby mozna bylo sie odwolac do naszej strony tylko przez CloudFront a nie bezposrednio do S3.</li>
+</ul>
+</li>
+<li><code>Origin Custom Headers</code>
+<ul>
+<li><strong>pozostawiamy puste</strong></li>
+</ul>
+</li>
+<li><code>Viewer Protocol Policy</code>
+<ul>
+<li>zmieniamy na <strong>Redirect HTTP to HTTPS</strong>
+<img src="/cloudfront/step-1.PNG" alt="Pierwszy krok"></li>
+</ul>
+</li>
+<li><code>Object Caching</code>
+<ul>
+<li>wybieramy <strong>Customize</strong></li>
+<li>zmieniamy <code>Maximum TTL</code> i <code>Default TTL</code> na <strong>30</strong></li>
+<li>Jest to czas jaki pliki naszej strony beda trzymane w cache&rsquo;u CloudFronta - do dewelopmentu potrzebujemy miec mala wartosc tak aby zmiany w kodzie byly szybko widoczne.</li>
+</ul>
+</li>
+<li><code>Distribution Settings</code>
+<ul>
+<li>Price Class -&gt; <strong>Use Only U.S., Canada and Europe</strong>
+<img src="/cloudfront/step-2.PNG" alt="Drugi krok"></li>
+</ul>
+</li>
+<li><code>Alternate Domain Names (CNAMEs)</code>
+<ul>
+<li>wpisujemy nasza domene np. jannowak.motobelfer.org</li>
+</ul>
+</li>
+<li><code>SSL Certificate</code>
+<ul>
+<li>ustawiamy <strong>Custom SSL Certificate</strong></li>
+<li>wybieramy nasz wcześniej utworzony certyfikat (lub certyfikat z * jezeli nasz certyfikat nie zostal jeszcze zwalidowany)</li>
+</ul>
+</li>
+<li><code>Default Root Object</code>
+<ul>
+<li>to jest główny plik naszej strony - wpisujemy <strong>index.html</strong></li>
+</ul>
+</li>
+<li><strong>Create Distribution</strong> - czas tworzenia sie dystrybucji to okolo 20 minut.
+<img src="/cloudfront/step-3.PNG" alt="Trzeci krok"></li>
+</ul>
+</li>
+</ul>
+<p>Po utworzeniu dystrybucji przechodzimy do Route53 i modyfikujemy nasz DNSowy record tak aby zamiast na S3 wskazywal na nasza dystrybucje CloudFront ktora powinna byc na liscie.</p>
+
+                    
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2020-03-05</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="http://warsztaty.motobelfer.org/posts/acm/">
+                    Next<br>AWS Certificate Manager
+                </a>
+                
+                
+                
+                <a class="older-posts" href="http://warsztaty.motobelfer.org/posts/codepipeline/">
+                    Previous<br>Codepipeline
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">Author: <a href="https://www.linkedin.com/in/maciejmalek/">Maciej Malek</a>
+<br>
+Home Page: <a href="http://maciejmalek.com" target="_blank" rel="noreferrer noopener">maciejmalek.com</a> <br>
+<br>
+&copy;
+	
+	2020 Warsztaty
+	
+</div>
+    	</div>
+    <script src="http://warsztaty.motobelfer.org//js/journal.js"></script>
+    </body>
+</html>

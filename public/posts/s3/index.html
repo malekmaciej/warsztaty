@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html><head>
+<title>S3</title>
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+<link rel="stylesheet" href="http://warsztaty.motobelfer.org/scss/journal.min.f9aa2ef90b19ac8d29363dbd51d4350621537cb3340dd7c6bacf18e3c426f4d5.css" integrity="sha256-&#43;aou&#43;QsZrI0pNj29UdQ1BiFTfLM0DdfGus8Y48Qm9NU=" media="screen">
+
+<script src="http://warsztaty.motobelfer.org//js/loadCSS.js"></script>
+<script src="http://warsztaty.motobelfer.org//js/table.js"></script>
+
+
+<script src="http://warsztaty.motobelfer.org//js/toc.js"></script>
+
+
+<script>
+    loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+
+
+</head><body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://warsztaty.motobelfer.org/">
+    
+        <div class="nav-title">
+            Warsztaty
+        </div>
+        
+        <div class="nav-subtitle">
+            DevOps w chmurze na przykładzie budowania statycznej strony www
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        Author: <a href="https://www.linkedin.com/in/maciejmalek/">Maciej Malek</a>
+<br>
+Home Page: <a href="http://maciejmalek.com" target="_blank" rel="noreferrer noopener">maciejmalek.com</a> <br>
+<br>
+&copy;
+	
+	2020 Warsztaty
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#amazon-simple-storage-service-amazon-s3" v-on:click="closeDrawer" id="amazon-simple-storage-service-amazon-s3-nav">
+										 Amazon Simple Storage Service (Amazon S3)
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#zadania-do-wykonania-na-zajeciach" v-on:click="closeDrawer" id="zadania-do-wykonania-na-zajeciach-nav">
+										 Zadania do wykonania na zajeciach:
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#tworzenie-bucketa" v-on:click="closeDrawer" id="tworzenie-bucketa-nav">
+										 Tworzenie bucket’a
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#name-and-region" v-on:click="closeDrawer" id="name-and-region-nav">
+										 Name and region
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#configure-options" v-on:click="closeDrawer" id="configure-options-nav">
+										 Configure options
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#set-permissions" v-on:click="closeDrawer" id="set-permissions-nav">
+										 Set permissions
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#review" v-on:click="closeDrawer" id="review-nav">
+										 Review
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#konfiguracja-bucketa-do-serwowania-stron-www" v-on:click="closeDrawer" id="konfiguracja-bucketa-do-serwowania-stron-www-nav">
+										 Konfiguracja bucket’a do serwowania stron www.
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#permissions" v-on:click="closeDrawer" id="permissions-nav">
+										 Permissions
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#properties" v-on:click="closeDrawer" id="properties-nav">
+										 Properties
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#amazon-simple-storage-service-amazon-s3" v-on:click="closeDrawer" id="amazon-simple-storage-service-amazon-s3-nav">
+										 Amazon Simple Storage Service (Amazon S3)
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#zadania-do-wykonania-na-zajeciach" v-on:click="closeDrawer" id="zadania-do-wykonania-na-zajeciach-nav">
+										 Zadania do wykonania na zajeciach:
+									</a>
+								</li>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#tworzenie-bucketa" v-on:click="closeDrawer" id="tworzenie-bucketa-nav">
+										 Tworzenie bucket’a
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#name-and-region" v-on:click="closeDrawer" id="name-and-region-nav">
+										 Name and region
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#configure-options" v-on:click="closeDrawer" id="configure-options-nav">
+										 Configure options
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#set-permissions" v-on:click="closeDrawer" id="set-permissions-nav">
+										 Set permissions
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#review" v-on:click="closeDrawer" id="review-nav">
+										 Review
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#konfiguracja-bucketa-do-serwowania-stron-www" v-on:click="closeDrawer" id="konfiguracja-bucketa-do-serwowania-stron-www-nav">
+										 Konfiguracja bucket’a do serwowania stron www.
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#permissions" v-on:click="closeDrawer" id="permissions-nav">
+										 Permissions
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+				
+				
+					
+						
+						
+							<ul>
+						
+							<ul>
+						
+							<ul>
+						
+						
+								<li>
+				 					<a href="#properties" v-on:click="closeDrawer" id="properties-nav">
+										 Properties
+									</a>
+								</li>
+						
+							</ul>
+						
+							</ul>
+						
+							</ul>
+						
+					
+				
+			
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="http://warsztaty.motobelfer.org/">
+            Warsztaty
+        </a>
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://warsztaty.motobelfer.org/">
+        <div class="single-column-header-title">Warsztaty</div>
+        
+        <div class="single-column-header-subtitle">DevOps w chmurze na przykładzie budowania statycznej strony www</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                 style="background-image: url('/')">
+                
+                <img src="http://warsztaty.motobelfer.org/" style="display: none;"></img>
+                <div class="post-title">
+                    S3
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2020-03-07 23:00
+                        </time>
+                        
+
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                <div class="post-body">
+                    <h1 id="amazon-simple-storage-service-amazon-s3">Amazon Simple Storage Service (Amazon S3)</h1>
+<p>Internetowy nośnik danych, który umożliwia dostęp do przechowywanych danych i zarządzanie nimi. Ilość przechowywanych danych jest praktycznie nielimitowana.</p>
+<p>Glowne funkcje:</p>
+<ul>
+<li>Kopie zapasowe</li>
+<li>Archwizacja danych</li>
+<li>Jezioro danych (data lake)</li>
+<li>Hosting statycznych stron www</li>
+</ul>
+<p>Kazdy S3 bucket ma swoj region.<br>
+W odroznieniu od innych regionalnych serwisow, gdzie widzimy tylko resource&rsquo;y w danym regionie, tutaj mamy jeden widok z wszystkimi bucketami utworzonymi na danym koncie AWS, a region jest atrybutem. 
+<img src="/s3/s3-regions-list.PNG" alt="Lista bucketow z regionami"></p>
+<h1 id="zadania-do-wykonania-na-zajeciach">Zadania do wykonania na zajeciach:</h1>
+<p>Utworzenie S3 bucket&rsquo;u w regionie Frankfurt jak serwera hostujacego statyczna strone www
+Nazwa bucketu musi byc taka sama jak bedzie URL strony www.
+Ustawienie bucket jako publiczny (Block all public access - Off).</p>
+<h2 id="tworzenie-bucketa">Tworzenie bucket&rsquo;a</h2>
+<h3 id="name-and-region">Name and region</h3>
+<ul>
+<li><code>Create bucket</code>
+<ul>
+<li>Bucket name
+<ul>
+<li>aby utworzyc statyczna strone www na S3, nazwa bucketu musi byc taka sama jak bedzie URL strony www.</li>
+<li>przykad: <em>warsztaty.motobelfer.org</em></li>
+</ul>
+</li>
+<li><code>Region</code> -&gt; <strong>EU (Frankfurt)</strong></li>
+<li><code>Copy setting from an exisiting bucket</code>
+<ul>
+<li><strong>pozostawimy bez zmian</strong>
+<img src="/s3/step-1.PNG" alt="Lista bucketow z regionami"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="configure-options">Configure options</h3>
+<ul>
+<li><code>Versioning</code>
+<ul>
+<li><strong>pozostawiamy odznaczone</strong></li>
+<li>nie potrzebujemy wersjonowania obiektow, do wersjonowania naszego kody bedziemy uzywac GIT&rsquo;a</li>
+</ul>
+</li>
+<li><code>Server access logging</code>
+<ul>
+<li><strong>pozostawiamy odznaczone</strong> - nie bedziemy uzywac tej funkcji.</li>
+</ul>
+</li>
+<li><code>Tags</code>
+<ul>
+<li><strong>podajemy przynajmniej &ldquo;owner&rdquo; = &ldquo;nazwa uzytkownika&rdquo;</strong></li>
+<li>maksymalnie mozna stworzyc do 50 tagow</li>
+<li>key moze miec od 1 do 128 znakow, value moze miec od 0 do 256 znakow.</li>
+<li>wielkosc liter ma znaczenie</li>
+</ul>
+</li>
+<li><code>Object-level logging</code>
+<ul>
+<li><strong>pozostawiamy odznaczone</strong></li>
+<li>sluzy do logowanie w usludze CloudTrail wszystkich akcji na obiektach w buckecie.</li>
+</ul>
+</li>
+<li><code>Default encryption</code>
+<ul>
+<li><strong>pozostawiamy odznaczone</strong></li>
+<li>w przypadku statyczniej strony www, ktora bedzie ogolnodostepna, nie ma potrzeby szyfrowania objektow  w bucketcie, a jezeli juz to nalezy wybrac AES-256
+<img src="/s3/step-2.PNG" alt="Opcje konfiguracyjne"></li>
+</ul>
+</li>
+</ul>
+<h3 id="set-permissions">Set permissions</h3>
+<ul>
+<li>Block public access (bucket settings)
+<ul>
+<li><strong>odznaczamy Block all public access</strong></li>
+<li>nasz bucket i strona beda publicznie dostepne</li>
+<li>trzeba potwierdzic <code>I acknowledge that the current settings may result in this bucket and the objects within becoming public</code></li>
+</ul>
+</li>
+<li>Manage system permissions
+<ul>
+<li>zostawiamy <code>Do not grant Amazon S3 Log Delivery group write access to this bucket</code></li>
+<li>opcja potrzebna gdy chcielibysmy dostarczac logi z innych serwerisow do naszego bucket&rsquo;a, np. z Elastic Load Balancer
+<img src="/s3/step-3.PNG" alt="Uprawnienia na buckecie"></li>
+</ul>
+</li>
+</ul>
+<h3 id="review">Review</h3>
+<ul>
+<li>przegladamy czy wszystko poprawnie skonfigurowalismy i klikamy <code>Create bucket</code></li>
+</ul>
+<h2 id="konfiguracja-bucketa-do-serwowania-stron-www">Konfiguracja bucket&rsquo;a do serwowania stron www.</h2>
+<h3 id="permissions">Permissions</h3>
+<ul>
+<li>Bucket Policy
+<ul>
+<li>Musimy zezwolic na dostep do objektow w naszym buckecie
+<pre><code>{
+    &quot;Version&quot;: &quot;2012-10-17&quot;,
+    &quot;Id&quot;: &quot;Policy1574148822995&quot;,
+    &quot;Statement&quot;: [
+        {
+            &quot;Sid&quot;: &quot;Stmt1574148821125&quot;,
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Principal&quot;: &quot;*&quot;,
+            &quot;Action&quot;: &quot;s3:GetObject&quot;,
+            &quot;Resource&quot;: &quot;arn:aws:s3:::warsztaty.motobelfer.org/*&quot;
+        }
+    ]
+}
+</code></pre></li>
+<li>nie zapomnijcie poprawic nazwy bucket&rsquo;a na swoj !
+<img src="/s3/step-4.PNG" alt="Uprawnienia do obiektow"></li>
+</ul>
+</li>
+</ul>
+<h3 id="properties">Properties</h3>
+<ul>
+<li>Static website hosting
+<ul>
+<li><code>Use this bucket to host a website</code>
+<ul>
+<li><code>Index document</code> -&gt; <strong>index.html</strong></li>
+<li><code>Error document</code> -&gt; <strong>error.html</strong>
+<img src="/s3/step-5.PNG" alt="Ustawienia strony www"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                    
+                    <HR width="100%" id="EOF">
+                    <p style="color:#777;">Last modified on 2020-03-05</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="http://warsztaty.motobelfer.org/posts/wprowadzenie/">
+                    Next<br>Wprowadzenie
+                </a>
+                
+                
+                
+                <a class="older-posts" href="http://warsztaty.motobelfer.org/posts/route53/">
+                    Previous<br>Route53
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">Author: <a href="https://www.linkedin.com/in/maciejmalek/">Maciej Malek</a>
+<br>
+Home Page: <a href="http://maciejmalek.com" target="_blank" rel="noreferrer noopener">maciejmalek.com</a> <br>
+<br>
+&copy;
+	
+	2020 Warsztaty
+	
+</div>
+    	</div>
+    <script src="http://warsztaty.motobelfer.org//js/journal.js"></script>
+    </body>
+</html>
